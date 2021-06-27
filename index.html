@@ -10,8 +10,7 @@
 
 <header>
     <div> View Highscores </div>
-    <div class = ""> Time </div>
-    <button id="test">Test</button>
+    <div class = "timer-count"> Time </div>
 </header>
 <main>
 <body>
@@ -19,18 +18,25 @@
         <div class = "large-font">Coding Quiz Challenge</div>
         <p>Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds?</p>
         <button class = "start-button">Start Quiz</button>
-    </section>
-        <div id = "quiz-container"> Quiz Time
+    
+        <div id = "quiz-container">
             <div id = "quizQuestion">
-                <div> are you ready to play my game?</div>
+                <!-- <div> are you ready to play my game?</div> -->
                 <div id = "quizAnswers"></div>
                 <button id="answerOne">answerOne</button>
                 <button id="answerTwo">answerTwo</button>
                 <button id="answerThree">answerThree</button>
                 <button id="answerFour">answerFour</button>
+                <div id = "correct"></div>
             </div>
         </div>
+        <div id = "submit-score">
+            <h1>All done!</h1>
+            Enter initials: 
+            <button>Submit</button>
+        </div>
     <script src="./assets/logic.js"></script>
+    </section>
 </body>
 </main>
 </html>
