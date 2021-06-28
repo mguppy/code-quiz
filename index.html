@@ -16,7 +16,7 @@
 <body>
     <section>
         <div class = "large-font">Coding Quiz Challenge</div>
-        <p>Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds?</p>
+        <p>Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by five seconds.</p>
         <button class = "start-button">Start Quiz</button>
     
         <div id = "quiz-container">
@@ -32,8 +32,13 @@
         </div>
         <div id = "submit-score">
             <h1>All done!</h1>
-            Enter initials: 
-            <button>Submit</button>
+            <form>
+            <label>Enter initials: </label>
+            <input type="text" placeholder="Enter initials" name="initials" id="initials">
+            <button id = "submit-button">Submit</button>
+            </form>
+            <p>High Scores: <span id ="highscore-count">0</span></p>
+            <ul id="highscores"></ul>
         </div>
     <script src="./assets/logic.js"></script>
     </section>

@@ -37,12 +37,15 @@ var threeHTML = document.querySelector("#answerThree");
 var fourHTML = document.querySelector("#answerFour");
 var correct = document.querySelector("#correct");
 var submitScore = document.querySelector("#submit-score");
+var initialsInput = document.querySelector("#initials");
+var highscores = document.querySelector("#highscores");
+var highscoresCount = document.querySelector("#highscore-count");
+
 
 //also global variables that we'll use for the logic below like functions and if/else stmts
 var score = 0;
-var isWin = false;
+// var isWin = false;
 var timeLeft = 60;
-
 var currentQuestion = null;
 
 var questionONE = {
@@ -83,6 +86,9 @@ var questionFOUR = {
 
 window.onload = function () {
     submitScore.style.display = 'none';
+
+    //hide question buttons on page load
+    //oneHTML.style.display = 'none';    
 }
 
 //Attach event listener to start button to call startGame function on click
@@ -92,11 +98,11 @@ startButton.addEventListener("click", startGame);
 // The startGame function is called when the start button is clicked
 function startGame() {
     currentQuestion = questionONE;
-  // Prevents start button from being clicked when round is in progress
-//   startButton.disabled = true;
-  renderQuestion();
-  countdown();
-}
+
+
+    renderQuestion();
+    countdown();
+  }
 
 //The setTimer function starts and stops the timer 
 function countdown() {
@@ -149,6 +155,7 @@ function checkAnswer (userAnswer) {
     //if answer is correct
     if(userAnswer === currentQuestion.correctAnswer) {
         score++;
+        console.log (score)
         correct.textContent = "Correct!"
         nextQuestion();
     }
@@ -182,13 +189,60 @@ function endQuiz () {
     quizContainer.style.display = 'none';
     timerElement.style.display = 'none';
  };   
+
+ //Renders items in the high scores list
+ function renderHighscores() {
+    highscores.innerHTML = "";
+    highscoresCount.textContent = highscores.length;
+
+    //Clears high scores element and updates count
+    for (var i=0; i <highscores.length; i++) {
+        var highscore = highscores[i];
+    
+    var li = document.createElement("li");
+    li.textContent = highscore;
+    li.setAttribute("data-index", i);
+
+    var submitButton = document.createElement("submit-button");
+
+    li.appendChild(submitButton);
+    highscores.appendChild(li);
+    }
+ };
+
+ function storeHighscores() {
+    var initialsText = initialsInput.value.trim();
+    
+    // Return from function early if submitted initialsText is blank
+    if (initialsText === "") {
+      return;
+    }
+
+    var storedScores = JSON.parse(localStorage.getItem("highscores")) || [];
+    var updateScores = {
+      score: score,
+      initials: initialsText
+    }
+
+    storedScores.push(updateScores);
+    localStorage.setItem("highscores", JSON.stringify(storedScores));
+
+    //  highscores.addEventListener("submit-button", function(event) {
+    //     event.preventDefault();
+
+    // console.log(storedScores)
+
+    // Add new initialsText to array, clear the input
+    // initialsInput.push(initialsText);
+    // initialsInput.value = "";
+
+    //Store updated highscores in localStorage, re-render the list
+    // storeHighscores();
+    // renderHighscores();
+ };
+
+ submitScore.addEventListener("click", storeHighscores);
  
-//use appendlist or appendChild div that shows the high scores
-
-//TO DOs in HTML: create one blank div for the question and then create 4 buttons and then reuse for the choices
-
-//New function for each event
-
 //User clicks button to "Start Quiz"
 //Event listener needed
 
