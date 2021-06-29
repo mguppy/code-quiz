@@ -190,26 +190,6 @@ function endQuiz () {
     timerElement.style.display = 'none';
  };   
 
- //Renders items in the high scores list
- function renderHighscores() {
-    highscores.innerHTML = "";
-    highscoresCount.textContent = highscores.length;
-
-    //Clears high scores element and updates count
-    for (var i=0; i <highscores.length; i++) {
-        var highscore = highscores[i];
-    
-    var li = document.createElement("li");
-    li.textContent = highscore;
-    li.setAttribute("data-index", i);
-
-    var submitButton = document.createElement("submit-button");
-
-    li.appendChild(submitButton);
-    highscores.appendChild(li);
-    }
- };
-
  function storeHighscores() {
     var initialsText = initialsInput.value.trim();
     
@@ -227,18 +207,6 @@ function endQuiz () {
     storedScores.push(updateScores);
     localStorage.setItem("highscores", JSON.stringify(storedScores));
 
-    //  highscores.addEventListener("submit-button", function(event) {
-    //     event.preventDefault();
-
-    // console.log(storedScores)
-
-    // Add new initialsText to array, clear the input
-    // initialsInput.push(initialsText);
-    // initialsInput.value = "";
-
-    //Store updated highscores in localStorage, re-render the list
-    // storeHighscores();
-    // renderHighscores();
  };
 
  submitScore.addEventListener("click", storeHighscores);

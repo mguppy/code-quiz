@@ -124,6 +124,11 @@
     }
   }
   
+  #score-link {
+    text-decoration: none;
+    color: purple;
+  }
+
   @media screen and (max-width: 504px) {
     .large-font {
       font-size: 2em;
@@ -138,4 +143,4 @@
     .timer {
       height: 200px;
     }
-   
+  }
